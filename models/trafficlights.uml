@@ -44,7 +44,11 @@
         <transition xmi:id="_t8" source="_maintenanceState" target="_join1"/>
         <transition xmi:id="_t9" source="_yellowState" target="_join1"/>
         <transition xmi:id="_t10" source="_join1" target="_finalState"/>
+        <transition xmi:id="_t11" source="_join1" />
+        <transition xmi:id="_t12" target="_join1" />
       </region>
     </packagedElement>
   </uml:Model>
 </xmi:XMI>
+
+
