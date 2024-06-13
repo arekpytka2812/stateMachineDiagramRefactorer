@@ -1,0 +1,75 @@
+-- @nsURI MM=http://www.eclipse.org/MM2/5.0.0/MM
+
+module transformation;
+create OUT : MM from IN : MM;
+
+rule StateMachine {
+  from
+    sm : MM!StateMachine
+  to
+    sm_copy : MM!StateMachine (
+      name <- sm.name,
+      region <- sm.region
+    )
+}
+
+rule Region {
+  from
+    r : MM!Region
+  to
+    r_copy : MM!Region (
+      name <- r.name,
+      subvertex <- r.subvertex,
+      transition <- r.transition
+    )
+}
+
+rule Pseudostate {
+  from
+    ps : MM!Pseudostate
+  to
+    ps_copy : MM!Pseudostate (
+      name <- ps.name,
+      kind <- ps.kind
+    )
+}
+
+rule State {
+  from
+    s : MM!State (s.oclIsTypeOf(MM!State) and (not s.entry.oclIsUndefined()) and (not s.exit.oclIsUndefined()))
+  to
+    s_copy : MM!State (
+      name <- s.name,
+      entry <- s.entry,
+      exit <- s.exit
+    )
+}
+
+rule Final {
+	from 
+      s : MM!FinalState (s.oclIsTypeOf(MM!FinalState))
+	to 
+	  s_copy : MM!FinalState(
+	  	name <- s.name	
+	  )
+}
+
+rule OpaqueBehavior{
+  from 
+	b : MM!OpaqueBehavior
+  to
+  	b_copy : MM!OpaqueBehavior(
+  	  name <- b.name
+  	)
+}
+
+rule Transition {
+  from
+    t : MM!Transition
+  to
+    t_copy : MM!Transition (
+      source <- t.source,
+      target <- t.target,
+      guard <- t.guard
+    )
+}
