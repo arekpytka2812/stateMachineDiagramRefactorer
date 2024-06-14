@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<uml:StateMachine xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_VT4c8Cm4Ee-dwN31O3rhfA" name="TrafficLightStateMachine">
-  <region xmi:id="_VT4c8Sm4Ee-dwN31O3rhfA" name="MainRegion">
-    <transition xmi:id="_VT4c8im4Ee-dwN31O3rhfA" source="_VT4c_Cm4Ee-dwN31O3rhfA" target="_VT4c_Sm4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c8ym4Ee-dwN31O3rhfA" source="_VT4c_Sm4Ee-dwN31O3rhfA" target="_VT4dCSm4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c9Cm4Ee-dwN31O3rhfA" source="_VT4dCSm4Ee-dwN31O3rhfA" target="_VT4dACm4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c9Sm4Ee-dwN31O3rhfA" source="_VT4dCSm4Ee-dwN31O3rhfA" target="_VT4dAym4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c9im4Ee-dwN31O3rhfA" source="_VT4dACm4Ee-dwN31O3rhfA" target="_VT4dCim4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c9ym4Ee-dwN31O3rhfA" source="_VT4dCim4Ee-dwN31O3rhfA" target="_VT4dBim4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c-Cm4Ee-dwN31O3rhfA" source="_VT4dCim4Ee-dwN31O3rhfA" target="_VT4dAym4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c-Sm4Ee-dwN31O3rhfA" source="_VT4dBim4Ee-dwN31O3rhfA" target="_VT4dCym4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c-im4Ee-dwN31O3rhfA" source="_VT4dAym4Ee-dwN31O3rhfA" target="_VT4dCym4Ee-dwN31O3rhfA"/>
-    <transition xmi:id="_VT4c-ym4Ee-dwN31O3rhfA" source="_VT4dCym4Ee-dwN31O3rhfA" target="_VT4dDCm4Ee-dwN31O3rhfA"/>
-    <subvertex xmi:type="uml:Pseudostate" xmi:id="_VT4c_Cm4Ee-dwN31O3rhfA" name="initial"/>
-    <subvertex xmi:type="uml:State" xmi:id="_VT4c_Sm4Ee-dwN31O3rhfA" name="Red">
-      <entry xmi:type="uml:OpaqueBehavior" xmi:id="_VT4c_im4Ee-dwN31O3rhfA" name="turnOnRedLight"/>
-      <exit xmi:type="uml:OpaqueBehavior" xmi:id="_VT4c_ym4Ee-dwN31O3rhfA" name="turnOffRedLight"/>
-    </subvertex>
-    <subvertex xmi:type="uml:State" xmi:id="_VT4dACm4Ee-dwN31O3rhfA" name="Green">
-      <entry xmi:type="uml:OpaqueBehavior" xmi:id="_VT4dASm4Ee-dwN31O3rhfA" name="turnOnGreenLight"/>
-      <exit xmi:type="uml:OpaqueBehavior" xmi:id="_VT4dAim4Ee-dwN31O3rhfA" name="turnOffGreenLight"/>
-    </subvertex>
-    <subvertex xmi:type="uml:State" xmi:id="_VT4dAym4Ee-dwN31O3rhfA" name="Yellow">
-      <entry xmi:type="uml:OpaqueBehavior" xmi:id="_VT4dBCm4Ee-dwN31O3rhfA" name="turnOnYellowLight"/>
-      <exit xmi:type="uml:OpaqueBehavior" xmi:id="_VT4dBSm4Ee-dwN31O3rhfA" name="turnOffYellowLight"/>
-    </subvertex>
-    <subvertex xmi:type="uml:State" xmi:id="_VT4dBim4Ee-dwN31O3rhfA" name="Maintenance">
-      <entry xmi:type="uml:OpaqueBehavior" xmi:id="_VT4dBym4Ee-dwN31O3rhfA" name="startMaintenance"/>
-      <exit xmi:type="uml:OpaqueBehavior" xmi:id="_VT4dCCm4Ee-dwN31O3rhfA" name="endMaintenance"/>
-    </subvertex>
-    <subvertex xmi:type="uml:Pseudostate" xmi:id="_VT4dCSm4Ee-dwN31O3rhfA" name="decision1" kind="choice"/>
-    <subvertex xmi:type="uml:Pseudostate" xmi:id="_VT4dCim4Ee-dwN31O3rhfA" name="fork1" kind="fork"/>
-    <subvertex xmi:type="uml:Pseudostate" xmi:id="_VT4dCym4Ee-dwN31O3rhfA" name="join1" kind="join"/>
-    <subvertex xmi:type="uml:FinalState" xmi:id="_VT4dDCm4Ee-dwN31O3rhfA" name="Final"/>
-  </region>
-</uml:StateMachine>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_EOO3sCnFEe-dwN31O3rhfA" name="TrafficLightSystem">
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_EOO3sSnFEe-dwN31O3rhfA" name="TrafficLightStateMachine">
+    <region xmi:id="_EOO3sinFEe-dwN31O3rhfA" name="MainRegion">
+      <transition xmi:id="_EOO3synFEe-dwN31O3rhfA" source="_EOO3vSnFEe-dwN31O3rhfA" target="_EOO3vinFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3tCnFEe-dwN31O3rhfA" source="_EOO3vinFEe-dwN31O3rhfA" target="_EOO3yinFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3tSnFEe-dwN31O3rhfA" source="_EOO3yinFEe-dwN31O3rhfA" target="_EOO3wSnFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3tinFEe-dwN31O3rhfA" source="_EOO3yinFEe-dwN31O3rhfA" target="_EOO3xCnFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3tynFEe-dwN31O3rhfA" source="_EOO3wSnFEe-dwN31O3rhfA" target="_EOO3yynFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3uCnFEe-dwN31O3rhfA" source="_EOO3yynFEe-dwN31O3rhfA" target="_EOO3xynFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3uSnFEe-dwN31O3rhfA" source="_EOO3yynFEe-dwN31O3rhfA" target="_EOO3xCnFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3uinFEe-dwN31O3rhfA" source="_EOO3xynFEe-dwN31O3rhfA" target="_EOO3zCnFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3uynFEe-dwN31O3rhfA" source="_EOO3xCnFEe-dwN31O3rhfA" target="_EOO3zCnFEe-dwN31O3rhfA"/>
+      <transition xmi:id="_EOO3vCnFEe-dwN31O3rhfA" source="_EOO3zCnFEe-dwN31O3rhfA" target="_EOO3zSnFEe-dwN31O3rhfA"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_EOO3vSnFEe-dwN31O3rhfA" name="initial"/>
+      <subvertex xmi:type="uml:State" xmi:id="_EOO3vinFEe-dwN31O3rhfA" name="Red">
+        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_EOO3vynFEe-dwN31O3rhfA" name="turnOnRedLight"/>
+        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_EOO3wCnFEe-dwN31O3rhfA" name="turnOffRedLight"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_EOO3wSnFEe-dwN31O3rhfA" name="Green">
+        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_EOO3winFEe-dwN31O3rhfA" name="turnOnGreenLight"/>
+        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_EOO3wynFEe-dwN31O3rhfA" name="turnOffGreenLight"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_EOO3xCnFEe-dwN31O3rhfA" name="Yellow">
+        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_EOO3xSnFEe-dwN31O3rhfA" name="turnOnYellowLight"/>
+        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_EOO3xinFEe-dwN31O3rhfA" name="turnOffYellowLight"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_EOO3xynFEe-dwN31O3rhfA" name="Maintenance">
+        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_EOO3yCnFEe-dwN31O3rhfA" name="startMaintenance"/>
+        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_EOO3ySnFEe-dwN31O3rhfA" name="endMaintenance"/>
+      </subvertex>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_EOO3yinFEe-dwN31O3rhfA" name="decision1" kind="choice"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_EOO3yynFEe-dwN31O3rhfA" name="fork1" kind="fork"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_EOO3zCnFEe-dwN31O3rhfA" name="join1" kind="join"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_EOO3zSnFEe-dwN31O3rhfA" name="Final"/>
+    </region>
+  </packagedElement>
+</uml:Model>
