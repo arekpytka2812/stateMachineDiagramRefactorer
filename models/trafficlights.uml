@@ -19,6 +19,10 @@
           <entry xmi:type="uml:OpaqueBehavior" xmi:id="_entryYellow" name="turnOnYellowLight"/>
           <exit xmi:type="uml:OpaqueBehavior" xmi:id="_exitYellow" name="turnOffYellowLight"/>
         </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_yellowState1" name="Yellow">
+          <entry xmi:type="uml:OpaqueBehavior" xmi:id="_entryYellow" name="turnOnYellowLight"/>
+          <exit xmi:type="uml:OpaqueBehavior" xmi:id="_exitYellow" name="turnOffYellowLight"/>
+        </subvertex>
         <subvertex xmi:type="uml:State" xmi:id="_maintenanceState" name="Maintenance">
           <entry xmi:type="uml:OpaqueBehavior" xmi:id="_entryMaintenance" name="startMaintenance"/>
           <exit xmi:type="uml:OpaqueBehavior" xmi:id="_exitMaintenance" name="endMaintenance"/>

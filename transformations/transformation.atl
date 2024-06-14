@@ -29,12 +29,34 @@ rule Region {
   to
     r_copy : MM!Region (
       name <- r.name,
-      subvertex <- r.subvertex,
+      subvertex <- r.subvertex -> select(e | 
+      	e.oclIsTypeOf(MM!State) 
+		or e.oclIsTypeOf(MM!Pseudostate) 
+		or e.oclIsTypeOf(MM!FinalState)).asSet(OclUndefined),
       transition <- r.transition
     )
 }
 
 -- Kopiowanie tylko poprawnych przejsc (posiada entry i exit)
+helper context MM!Region def: uniqueStates(states: Sequence(MM!State)): Sequence(MM!State) =
+  states->iterate(s; result: Sequence(MM!State) = Sequence{} |
+    if result->exists(r | r.name = s.name) then
+      result
+    else
+      result->append(s)
+    endif
+  );
+
+rule Pseudostate {
+  from
+    ps : MM!Pseudostate
+  to
+    ps_copy : MM!Pseudostate (
+      name <- ps.name,
+      kind <- ps.kind
+    )
+}
+
 rule State {
   from
     s : MM!State (s.oclIsTypeOf(MM!State) and (not s.entry.oclIsUndefined()) and (not s.exit.oclIsUndefined()))

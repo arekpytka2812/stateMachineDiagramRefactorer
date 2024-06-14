@@ -110,6 +110,15 @@
 		<constant value="30:5-34:6"/>
 		<constant value="__applyRegion"/>
 		<constant value="subvertex"/>
+		<constant value="4"/>
+		<constant value="J.oclIsTypeOf(J):J"/>
+		<constant value="J.or(J):J"/>
+		<constant value="FinalState"/>
+		<constant value="B.not():B"/>
+		<constant value="45"/>
+		<constant value="CJ.including(J):CJ"/>
+		<constant value="QJ.first():J"/>
+		<constant value="J.asSet(J):J"/>
 		<constant value="transition"/>
 		<constant value="31:15-31:16"/>
 		<constant value="31:15-31:21"/>
@@ -121,15 +130,12 @@
 		<constant value="33:21-33:33"/>
 		<constant value="33:7-33:33"/>
 		<constant value="__matchState"/>
-		<constant value="J.oclIsTypeOf(J):J"/>
 		<constant value="entry"/>
 		<constant value="J.oclIsUndefined():J"/>
 		<constant value="J.not():J"/>
 		<constant value="J.and(J):J"/>
 		<constant value="exit"/>
-		<constant value="B.not():B"/>
 		<constant value="44"/>
-		<constant value="s"/>
 		<constant value="s_copy"/>
 		<constant value="40:19-40:20"/>
 		<constant value="40:33-40:41"/>
@@ -604,6 +610,9 @@
 			<set arg="38"/>
 			<dup/>
 			<getasm/>
+			<push arg="28"/>
+			<push arg="8"/>
+			<new/>
 			<load arg="29"/>
 			<get arg="96"/>
 			<call arg="30"/>
@@ -700,7 +709,7 @@
 			<load arg="29"/>
 			<get arg="109"/>
 			<call arg="30"/>
-			<set arg="109"/>
+			<set arg="157"/>
 			<pop/>
 		</code>
 		<linenumbertable>
