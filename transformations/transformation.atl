@@ -1,4 +1,4 @@
--- @nsURI MM=http://www.eclipse.org/MM2/5.0.0/MM
+-- @nsURI MM=http://www.eclipse.org/uml2/5.0.0/UML
 
 module transformation;
 create OUT : MM from IN : MM;
@@ -47,7 +47,7 @@ rule State {
 
 rule Final {
 	from 
-      s : MM!FinalState (s.oclIsTypeOf(MM!FinalState))
+      s : MM!FinalState (MM!Transition.allInstances()->select(t | t.target = s)->size() <= 1)
 	to 
 	  s_copy : MM!FinalState(
 	  	name <- s.name	
@@ -73,3 +73,27 @@ rule Transition {
       guard <- t.guard
     )
 }
+
+rule FinalStateToPseudostate {
+    from
+        fs : MM!FinalState ( 
+            MM!Transition.allInstances()->select(t | t.target = fs)->size() > 1
+        )
+    to
+		updatedElements : Sequence(Tuple) <- MM!Transition.allInstances()
+            ->select(t | t.target = fs)
+            ->collect(t | thisModule.createUpdatedElements(t, fs.name))
+}
+
+-- Helper do tworzenia pseudostanu i aktualizacji przejścia
+helper context MM!FinalState def: createUpdatedElements(t : MM!Transition, name : String) : Tuple {
+    newPseudostate : MM!Pseudostate = MM!Pseudostate {
+        name <- name + '_ps_' + t.source.name,
+        kind <- 'terminate'
+    },
+    updatedTransition : MM!Transition = MM!Transition {
+        name <- t.name,
+        source <- t.source,
+        target <- newPseudostate
+    }
+};
