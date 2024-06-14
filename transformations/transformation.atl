@@ -1,4 +1,4 @@
--- @nsURI MM=http://www.eclipse.org/MM2/5.0.0/MM
+-- @nsURI MM=http://www.eclipse.org/uml2/5.0.0/UML
 
 module transformation;
 create OUT : MM from IN : MM;
@@ -19,10 +19,22 @@ rule Region {
   to
     r_copy : MM!Region (
       name <- r.name,
-      subvertex <- r.subvertex,
+      subvertex <- r.subvertex -> select(e | 
+      	e.oclIsTypeOf(MM!State) 
+		or e.oclIsTypeOf(MM!Pseudostate) 
+		or e.oclIsTypeOf(MM!FinalState)).asSet(OclUndefined),
       transition <- r.transition
     )
 }
+
+helper context MM!Region def: uniqueStates(states: Sequence(MM!State)): Sequence(MM!State) =
+  states->iterate(s; result: Sequence(MM!State) = Sequence{} |
+    if result->exists(r | r.name = s.name) then
+      result
+    else
+      result->append(s)
+    endif
+  );
 
 rule Pseudostate {
   from
