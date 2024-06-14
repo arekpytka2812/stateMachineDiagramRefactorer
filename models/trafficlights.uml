@@ -4,7 +4,6 @@
     <packagedElement xmi:type="uml:StateMachine" xmi:id="_trafficLightStateMachine" name="TrafficLightStateMachine">
       <region xmi:type="uml:Region" xmi:id="_mainRegion" name="MainRegion">
         <!-- Initial Pseudostate -->
-        <subvertex xmi:type="uml:Pseudostate" xmi:id="_initial" name="initial" kind="initial"/>
         
         <!-- States -->
         <subvertex xmi:type="uml:State" xmi:id="_redState" name="Red">
@@ -34,7 +33,6 @@
         <subvertex xmi:type="uml:FinalState" xmi:id="_finalState" name="Final"/>
         
         <!-- Transitions -->
-        <transition xmi:id="_t1" source="_initial" target="_redState"/>
         <transition xmi:id="_t2" source="_redState" target="_decision1"/>
         <transition xmi:id="_t3" source="_decision1" target="_greenState"/>
         <transition xmi:id="_t4" source="_decision1" target="_yellowState"/>
@@ -45,6 +43,7 @@
         <transition xmi:id="_t9" source="_yellowState" target="_join1"/>
         <transition xmi:id="_t10" source="_join1" target="_finalState"/>
         <transition xmi:id="_t11" source="_redState" target="_finalState"/>>
+        <transition xmi:id="_t2" source="" target=""/>
       </region>
     </packagedElement>
   </uml:Model>

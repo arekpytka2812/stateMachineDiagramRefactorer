@@ -10,8 +10,21 @@ rule StateMachine {
     sm_copy : MM!StateMachine (
       name <- sm.name,
       region <- sm.region
+    ),
+    initialState : MM!Pseudostate (
+        kind <- #initial,
+        container <- sm_copy.region,
+		name <- 'start'
+    ),
+    initialTransition : MM!Transition (
+        source <- initialState,
+        target <- thisModule.findTargetState(sm),
+        container <- sm_copy.region
     )
 }
+
+helper def: findTargetState(sm : MM!StateMachine) : MM!State =
+    sm.region->first().subvertex->select(e | e.oclIsTypeOf(MM!State) and not sm.region->first().transition->exists(t | t.target = e))->first();
 
 rule Region {
   from
@@ -47,7 +60,7 @@ rule State {
 
 rule Final {
 	from 
-      s : MM!FinalState (MM!Transition.allInstances()->select(t | t.target = s)->size() <= 1)
+      s : MM!FinalState
 	to 
 	  s_copy : MM!FinalState(
 	  	name <- s.name	
@@ -65,7 +78,7 @@ rule OpaqueBehavior{
 
 rule Transition {
   from
-    t : MM!Transition
+    t : MM!Transition (not t.source.oclIsUndefined() and not t.target.oclIsUndefined())
   to
     t_copy : MM!Transition (
       source <- t.source,
@@ -74,26 +87,3 @@ rule Transition {
     )
 }
 
-rule FinalStateToPseudostate {
-    from
-        fs : MM!FinalState ( 
-            MM!Transition.allInstances()->select(t | t.target = fs)->size() > 1
-        )
-    to
-		updatedElements : Sequence(Tuple) <- MM!Transition.allInstances()
-            ->select(t | t.target = fs)
-            ->collect(t | thisModule.createUpdatedElements(t, fs.name))
-}
-
--- Helper do tworzenia pseudostanu i aktualizacji przejścia
-helper context MM!FinalState def: createUpdatedElements(t : MM!Transition, name : String) : Tuple {
-    newPseudostate : MM!Pseudostate = MM!Pseudostate {
-        name <- name + '_ps_' + t.source.name,
-        kind <- 'terminate'
-    },
-    updatedTransition : MM!Transition = MM!Transition {
-        name <- t.name,
-        source <- t.source,
-        target <- newPseudostate
-    }
-};
