@@ -20,8 +20,21 @@ rule StateMachine {
     sm_copy : MM!StateMachine (
       name <- sm.name,
       region <- sm.region
+    ),
+    initialState : MM!Pseudostate (
+        kind <- #initial ,
+        container <- sm_copy.region.first(),
+		name <- 'start'
+    ),
+    initialTransition : MM!Transition (
+        source <- initialState,
+        target <- thisModule.findTargetState(sm),
+        container <- sm_copy.region.first()
     )
 }
+
+helper def: findTargetState(sm : MM!StateMachine) : MM!State =
+    sm.region->first().subvertex->select(e | e.oclIsTypeOf(MM!State) and not sm.region->first().transition->exists(t | t.target = e))->first();
 
 rule Region {
   from
@@ -29,10 +42,7 @@ rule Region {
   to
     r_copy : MM!Region (
       name <- r.name,
-      subvertex <- r.subvertex -> select(e | 
-      	e.oclIsTypeOf(MM!State) 
-		or e.oclIsTypeOf(MM!Pseudostate) 
-		or e.oclIsTypeOf(MM!FinalState)).asSet(OclUndefined),
+      subvertex <- r.subvertex,
       transition <- r.transition
     )
 }
@@ -72,7 +82,7 @@ rule State {
 
 rule Final {
 	from 
-      s : MM!FinalState (s.oclIsTypeOf(MM!FinalState))
+      s : MM!FinalState
 	to 
 	  s_copy : MM!FinalState(
 	  	name <- s.name	
@@ -91,7 +101,7 @@ rule OpaqueBehavior{
 -- Kopiowanie tylko poprawnych przejsc (posiada source i target)
 rule Transition {
   from
-    t : MM!Transition ((not t.source.oclIsUndefined()) and (not t.target.oclIsUndefined()))
+    t : MM!Transition (not t.source.oclIsUndefined() and not t.target.oclIsUndefined())
   to
     t_copy : MM!Transition (
       source <- t.source,
@@ -99,3 +109,4 @@ rule Transition {
       guard <- t.guard
     )
 }
+
