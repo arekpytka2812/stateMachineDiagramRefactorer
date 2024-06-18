@@ -45,10 +45,11 @@
         <transition xmi:id="_t7" source="_fork1" target="_yellowState"/>
         <transition xmi:id="_t8" source="_maintenanceState" target="_join1"/>
         <transition xmi:id="_t9" source="_yellowState" target="_join1"/>
+        <transition xmi:id="_t12" source="_yellowState" target="_join1"/>
         <transition xmi:id="_t10" source="_join1" target="_finalState"/>
 
         <transition xmi:id="_t11" source="_redState" target="_finalState"/>>
-        <transition xmi:id="_t2" source="" target=""/>
+        <transition xmi:id="_t13" source="" target=""/>
       </region>
     </packagedElement>
   </uml:Model>

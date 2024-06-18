@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_gDzQEC2ZEe-lycleraSDXg" name="TrafficLightSystem">
-  <packagedElement xmi:type="uml:StateMachine" xmi:id="_gDzQES2ZEe-lycleraSDXg" name="TrafficLightStateMachine">
-    <region xmi:id="_gDzQFC2ZEe-lycleraSDXg" name="MainRegion">
-      <transition xmi:id="_gDzQEy2ZEe-lycleraSDXg" source="_gDzQEi2ZEe-lycleraSDXg" target="_gDzQGC2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3KS2ZEe-lycleraSDXg" source="_gDzQGC2ZEe-lycleraSDXg" target="_gDzQFS2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3Ki2ZEe-lycleraSDXg" source="_gDzQFS2ZEe-lycleraSDXg" target="_gDzQGS2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3Ky2ZEe-lycleraSDXg" source="_gDzQFS2ZEe-lycleraSDXg" target="_gDzQGi2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3LC2ZEe-lycleraSDXg" source="_gDzQGS2ZEe-lycleraSDXg" target="_gDzQFi2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3LS2ZEe-lycleraSDXg" source="_gDzQFi2ZEe-lycleraSDXg" target="_gDzQHC2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3Li2ZEe-lycleraSDXg" source="_gDzQFi2ZEe-lycleraSDXg" target="_gDzQGi2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3Ly2ZEe-lycleraSDXg" source="_gDzQHC2ZEe-lycleraSDXg" target="_gDzQFy2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3MC2ZEe-lycleraSDXg" source="_gDzQGi2ZEe-lycleraSDXg" target="_gDzQFy2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3MS2ZEe-lycleraSDXg" source="_gDzQFy2ZEe-lycleraSDXg" target="_gDzQHS2ZEe-lycleraSDXg"/>
-      <transition xmi:id="_gDz3Mi2ZEe-lycleraSDXg" source="_gDzQGC2ZEe-lycleraSDXg" target="_gDzQHS2ZEe-lycleraSDXg"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_gDzQEi2ZEe-lycleraSDXg" name="start"/>
-      <subvertex xmi:type="uml:State" xmi:id="_gDzQGC2ZEe-lycleraSDXg" name="Red">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_gDzQHi2ZEe-lycleraSDXg" name="turnOnRedLight"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3IC2ZEe-lycleraSDXg" name="turnOffRedLight"/>
-      </subvertex>
-      <subvertex xmi:type="uml:State" xmi:id="_gDzQGS2ZEe-lycleraSDXg" name="Green">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3IS2ZEe-lycleraSDXg" name="turnOnGreenLight"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3Ii2ZEe-lycleraSDXg" name="turnOffGreenLight"/>
-      </subvertex>
-      <subvertex xmi:type="uml:State" xmi:id="_gDzQGi2ZEe-lycleraSDXg" name="Yellow">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3Iy2ZEe-lycleraSDXg" name="turnOnYellowLight"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3JC2ZEe-lycleraSDXg" name="turnOffYellowLight"/>
-      </subvertex>
-      <subvertex xmi:type="uml:State" xmi:id="_gDzQGy2ZEe-lycleraSDXg" name="Yellow">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3JS2ZEe-lycleraSDXg" name="turnOnYellowLight"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3Ji2ZEe-lycleraSDXg" name="turnOffYellowLight"/>
-      </subvertex>
-      <subvertex xmi:type="uml:State" xmi:id="_gDzQHC2ZEe-lycleraSDXg" name="Maintenance">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3Jy2ZEe-lycleraSDXg" name="startMaintenance"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_gDz3KC2ZEe-lycleraSDXg" name="endMaintenance"/>
-      </subvertex>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_gDzQFS2ZEe-lycleraSDXg" name="decision1" kind="choice"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_gDzQFi2ZEe-lycleraSDXg" name="fork1" kind="fork"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_gDzQFy2ZEe-lycleraSDXg" name="join1" kind="join"/>
-      <subvertex xmi:type="uml:FinalState" xmi:id="_gDzQHS2ZEe-lycleraSDXg" name="Final"/>
-    </region>
-  </packagedElement>
-</uml:Model>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_GS75EC2kEe-lycleraSDXg" name="TrafficLightSystem">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_GS75ES2kEe-lycleraSDXg" name="TrafficLightStateMachine">
+      <region xmi:id="_GS75FC2kEe-lycleraSDXg" name="MainRegion">
+        <transition xmi:id="_GS75Ey2kEe-lycleraSDXg" source="_GS75Ei2kEe-lycleraSDXg" target="_GS75Iy2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75FS2kEe-lycleraSDXg" source="_GS75Iy2kEe-lycleraSDXg" target="_GS75IC2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75Fi2kEe-lycleraSDXg" source="_GS75IC2kEe-lycleraSDXg" target="_GS75JC2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75Fy2kEe-lycleraSDXg" source="_GS75IC2kEe-lycleraSDXg" target="_GS75JS2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75GC2kEe-lycleraSDXg" source="_GS75JC2kEe-lycleraSDXg" target="_GS75IS2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75GS2kEe-lycleraSDXg" source="_GS75IS2kEe-lycleraSDXg" target="_GS75Jy2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75Gi2kEe-lycleraSDXg" source="_GS75IS2kEe-lycleraSDXg" target="_GS75JS2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75Gy2kEe-lycleraSDXg" source="_GS75Jy2kEe-lycleraSDXg" target="_GS75Ii2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75HC2kEe-lycleraSDXg" source="_GS75JS2kEe-lycleraSDXg" target="_GS75Ii2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75Hi2kEe-lycleraSDXg" source="_GS75Ii2kEe-lycleraSDXg" target="_GS75KC2kEe-lycleraSDXg"/>
+        <transition xmi:id="_GS75Hy2kEe-lycleraSDXg" source="_GS75Iy2kEe-lycleraSDXg" target="_GS75KC2kEe-lycleraSDXg"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_GS75Ei2kEe-lycleraSDXg" name="start"/>
+        <subvertex xmi:type="uml:State" xmi:id="_GS75Iy2kEe-lycleraSDXg" name="Red">
+          <entry xmi:type="uml:OpaqueBehavior" xmi:id="_GS75KS2kEe-lycleraSDXg" name="turnOnRedLight"/>
+          <exit xmi:type="uml:OpaqueBehavior" xmi:id="_GS75Ki2kEe-lycleraSDXg" name="turnOffRedLight"/>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_GS75JC2kEe-lycleraSDXg" name="Green">
+          <entry xmi:type="uml:OpaqueBehavior" xmi:id="_GS75Ky2kEe-lycleraSDXg" name="turnOnGreenLight"/>
+          <exit xmi:type="uml:OpaqueBehavior" xmi:id="_GS75LC2kEe-lycleraSDXg" name="turnOffGreenLight"/>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_GS75JS2kEe-lycleraSDXg" name="Yellow">
+          <entry xmi:type="uml:OpaqueBehavior" xmi:id="_GS75LS2kEe-lycleraSDXg" name="turnOnYellowLight"/>
+          <exit xmi:type="uml:OpaqueBehavior" xmi:id="_GS75Li2kEe-lycleraSDXg" name="turnOffYellowLight"/>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_GS75Ji2kEe-lycleraSDXg" name="Yellow">
+          <entry xmi:type="uml:OpaqueBehavior" xmi:id="_GS75Ly2kEe-lycleraSDXg" name="turnOnYellowLight"/>
+          <exit xmi:type="uml:OpaqueBehavior" xmi:id="_GS75MC2kEe-lycleraSDXg" name="turnOffYellowLight"/>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_GS75Jy2kEe-lycleraSDXg" name="Maintenance">
+          <entry xmi:type="uml:OpaqueBehavior" xmi:id="_GS75MS2kEe-lycleraSDXg" name="startMaintenance"/>
+          <exit xmi:type="uml:OpaqueBehavior" xmi:id="_GS75Mi2kEe-lycleraSDXg" name="endMaintenance"/>
+        </subvertex>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_GS75IC2kEe-lycleraSDXg" name="decision1" kind="choice"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_GS75IS2kEe-lycleraSDXg" name="fork1" kind="fork"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_GS75Ii2kEe-lycleraSDXg" name="join1" kind="join"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_GS75KC2kEe-lycleraSDXg" name="Final"/>
+      </region>
+    </packagedElement>
+  </uml:Model>
+  <uml:Transition xmi:id="_GS75HS2kEe-lycleraSDXg" source="_GS75JS2kEe-lycleraSDXg" target="_GS75Ii2kEe-lycleraSDXg"/>
+</xmi:XMI>
