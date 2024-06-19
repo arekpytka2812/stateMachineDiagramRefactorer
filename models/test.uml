@@ -2,7 +2,7 @@
 <xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <uml:Model xmi:id="_test1" name="TestModel1">
     <packagedElement xmi:type="uml:StateMachine" xmi:id="_test1StateMachine" name="Test1StateMachine">
-      <region xmi:type="uml:Region" xmi:id="_mainRegion" name="MainRegion">
+      <region xmi:type="uml:Region" xmi:id="_mainRegion" name="MainRegion1">
         <!-- Initial Pseudostate -->
         
         <!-- States -->
@@ -22,7 +22,7 @@
   </uml:Model>
   <uml:Model xmi:id="_test2" name="TestModel2">
     <packagedElement xmi:type="uml:StateMachine" xmi:id="_test2StateMachine" name="Test2StateMachine">
-      <region xmi:type="uml:Region" xmi:id="_mainRegion" name="MainRegion">
+      <region xmi:type="uml:Region" xmi:id="_mainRegion" name="MainRegion2">
         <!-- Initial Pseudostate -->
     	<subvertex xmi:type="uml:Pseudostate" xmi:id="_start" name="start" kind="initial"/>
         <!-- States -->

@@ -20,16 +20,6 @@ rule StateMachine {
     sm_copy : MM!StateMachine (
       name <- sm.name,
       region <- sm.region
-    ),
-    initialState : MM!Pseudostate (
-        kind <- #initial ,
-        container <- sm_copy.region.first(),
-		name <- 'start'
-    ),
-    initialTransition : MM!Transition (
-        source <- initialState,
-        target <- thisModule.findTargetState(sm),
-        container <- sm_copy.region.first()
     )
 }
 
@@ -40,17 +30,69 @@ helper def: findTargetState(sm : MM!StateMachine) : MM!State =
 helper context MM!Region def : filterTrans(tran_in: Sequence(MM!Transition)) : Sequence(MM!Transition) = 
 	tran_in->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
 	if ((t.source.oclIsUndefined() and t.target.oclIsUndefined()) or result->exists(r | (r.source = t.source and r.target = t.target))) then
-		result.debug('Not appedning')
+		result
 	else
-		result->append(t).debug('Appending')
+		result->append(t)
 	endif
 );
 
 --Wykonanie rule transition na sekwencji przejść
 helper context MM!Region def : performTransition(filtered : Sequence(MM!Transition)) : Sequence(MM!Transition) =
 	filtered->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
-		result->append(thisModule.transition(t)).debug('Transforming transition')
+	if(t.source.oclIsTypeOf(MM!Pseudostate)) then
+		if(t.source.kind <> #initial) then
+			result->append(thisModule.transition(t)) 
+		else 
+			result 
+		endif
+	else
+		if(not t.target.oclIsTypeOf(MM!FinalState)) then
+			result->append(thisModule.transition(t))
+		else
+			result
+		endif
+	endif
 );
+
+
+
+lazy rule InitialStateCopy {
+  from
+    ps : MM!Pseudostate (ps.kind = #initial)
+  to
+    ps_copy : MM!Pseudostate (
+      name <- ps.name,
+      kind <- ps.kind,
+	  container <- ps.container
+    )
+}
+
+
+
+lazy rule FinalStateCopy {
+	from 
+      s : MM!FinalState
+	to 
+	  s_copy : MM!FinalState(
+	  	name <- s.name,
+		container <- s.container
+	  )
+}
+
+-- Kopiowanie tylko poprawnych stanów (posiada entry i exit)
+rule State {
+  from
+    s : MM!State (s.oclIsTypeOf(MM!State) and (((not s.entry.oclIsUndefined()) and (not s.exit.oclIsUndefined())) or
+    	((not MM!Transition.allInstances()->select(tran | tran.source = s).isEmpty()) or (not MM!Transition.allInstances()->select(tran | tran.target = s).isEmpty())))	
+    )
+  to
+    s_copy : MM!State (
+      name <- s.name,
+      entry <- s.entry,
+      exit <- s.exit,
+	  container <- s.container
+    )
+}
 
 rule Region {
   from
@@ -61,6 +103,109 @@ rule Region {
       subvertex <- r.subvertex,
       transition <-  r.performTransition(r.filterTrans(r.transition))
 	  )
+	do {
+		r.debug('Evaluating initial states for');
+		if(r.subvertex -> 
+				select(sub | sub.oclIsTypeOf(MM!Pseudostate)).debug('subvertices') -> 
+					select(sub | sub.kind = #initial).debug('initialStates').isEmpty()) {
+			thisModule.initialState(r_copy);
+		} else {
+			thisModule.InitialStateCopy(r.subvertex -> select(sub | sub.oclIsTypeOf(MM!Pseudostate)) -> 
+				select(sub | sub.kind = #initial).first());
+		}
+		
+		if(r.transition -> 
+				select(t | t.source = r.subvertex ->
+					select(sub | sub.oclIsTypeOf(MM!Pseudostate)) -> 
+						select(sub | sub.kind = #initial).first()).isEmpty() and r.transition -> select(t | t.target.oclIsUndefined()).isEmpty()) {
+			thisModule.initialStateTransition(r, r_copy);
+		} else if (r.transition ->
+				select(t | t.source = r.subvertex ->
+					select(sub | sub.oclIsTypeOf(MM!Pseudostate)) -> 
+						select(sub | sub.kind = #initial).first()).debug('trans from init').size().debug('sze') > 0) {
+			thisModule.transition(r.transition -> select(t | t.source = r.subvertex ->
+					select(sub | sub.oclIsTypeOf(MM!Pseudostate)) -> 
+						select(sub | sub.kind = #initial).first()).debug('copying transition to initial').first());
+		}
+		
+		
+		r.debug('Evaluating final states for');
+		if(r.subvertex -> 
+				select(sub | sub.oclIsTypeOf(MM!FinalState)).debug('finalStates')
+					.isEmpty()) {
+			thisModule.finalState(r_copy);
+		} else {
+			thisModule.FinalStateCopy(r.subvertex -> 
+				select(sub | sub.oclIsTypeOf(MM!FinalState)).debug('finalStates').first());
+		}
+		
+		if(r.transition -> 
+				select(t | r.subvertex -> select(sub | sub.oclIsTypeOf(MM!FinalState)).debug('subvertecises').includes(t.target.debug('t.target'))).isEmpty().debug('condition_1') or (
+			r.transition -> 
+				select(t | t.target = r.subvertex ->
+					select(sub | sub.oclIsTypeOf(MM!FinalState)).first() and t.source.oclIsUndefined()).size() > 0 ).debug('condition_2')) {
+			thisModule.finalStateTransition(r, r_copy);
+		} else if (r.transition ->
+				select(t | t.target = r.subvertex ->
+					select(sub | sub.oclIsTypeOf(MM!FinalState)).first()).debug('trans to final').size().debug('sze') > 0) {
+			thisModule.transition(r.transition -> select(t | t.target = r.subvertex ->
+					select(sub | sub.oclIsTypeOf(MM!FinalState)).first()).debug('copying transition to final').first());
+			
+		}
+	}
+}
+
+rule initialState(reg : MM!Region) {
+	to 
+		t : MM!Pseudostate 
+		do {
+	        t.kind <- #initial;
+	        t.container <- reg;
+			t.name <- 'start';
+			t.debug('created initial state');
+		}
+}
+
+
+rule finalState(reg : MM!Region) {
+	to
+		t : MM!FinalState
+		do {
+			t.container <- reg;
+			t.name <- 'finish';
+			t.debug('created final state');
+		}
+}
+
+rule initialStateTransition(reg : MM!region, reg_copy : MM!region) {
+	using {
+		state : Sequence(MM!State) = reg.subvertex -> select(s | s.oclIsTypeOf(MM!State));
+		candidate_states : Sequence(MM!State) = state -> select(s | reg.transition -> select(t | t.target = s).isEmpty());
+		}
+	to 
+		t : MM!Transition
+		do {
+			t.name <- 'startTransition';
+			t.container <- reg_copy;
+			t.source <- reg_copy.subvertex -> select(sub | sub.oclIsTypeOf(MM!Pseudostate)).debug('initialStateTransition:subvertices') -> 
+				select(sub | sub.kind = #initial).debug('initialStateTransition:initialStates').first();
+			t.target <- if candidate_states.isEmpty() then state.first() else candidate_states.first() endif;
+		}
+}
+
+rule finalStateTransition(reg : MM!region, reg_copy : MM!region) {
+	using {
+		state : Sequence(MM!State) = reg.subvertex -> select(s | s.oclIsTypeOf(MM!State) and not reg.transition -> select(t | t.source = s or t.target = s).isEmpty());
+		candidate_states : Sequence(MM!State) = state -> select(s | reg.transition -> select(t | t.source = s).isEmpty());
+		}
+	to 
+		t : MM!Transition
+		do {
+			t.name <- 'finalTransition';
+			t.container <- reg_copy;
+			t.target <- reg_copy.subvertex -> select(sub | sub.oclIsTypeOf(MM!FinalState)).debug('finalStateTransition:finalStates').first();
+			t.source <- if candidate_states.isEmpty() then state.last() else candidate_states.first() endif;
+		}
 }
 
 lazy rule transition{
@@ -70,7 +215,8 @@ lazy rule transition{
 		trans_out : MM!Transition (
 		name<- trans_in.name,
 		source<- trans_in.source,
-		target<- trans_in.target
+		target<- trans_in.target,
+		container <- trans_in.container
 	)
 }
 
@@ -87,35 +233,12 @@ helper context MM!Region def: uniqueStates(states: Sequence(MM!State)): Sequence
 
 rule Pseudostate {
   from
-    ps : MM!Pseudostate
+    ps : MM!Pseudostate (ps.kind <> #initial)
   to
     ps_copy : MM!Pseudostate (
       name <- ps.name,
       kind <- ps.kind
     )
-}
-
--- Kopiowanie tylko poprawnych stanów (posiada entry i exit)
-rule State {
-  from
-    s : MM!State (s.oclIsTypeOf(MM!State) and (((not s.entry.oclIsUndefined()) and (not s.exit.oclIsUndefined())) or
-    	((not MM!Transition.allInstances()->select(tran | tran.source = s).isEmpty()) or (not MM!Transition.allInstances()->select(tran | tran.target = s).isEmpty())))	
-    )
-  to
-    s_copy : MM!State (
-      name <- s.name,
-      entry <- s.entry,
-      exit <- s.exit
-    )
-}
-
-rule Final {
-	from 
-      s : MM!FinalState
-	to 
-	  s_copy : MM!FinalState(
-	  	name <- s.name	
-	  )
 }
 
 rule OpaqueBehavior{

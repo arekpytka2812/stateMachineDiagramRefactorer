@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_zHh6ADFaEe-19-gVmrrYlQ" name="Model">
-  <packagedElement xmi:type="uml:StateMachine" xmi:id="_zHh6ATFaEe-19-gVmrrYlQ" name="StateMachine">
-    <region xmi:id="_zHh6BDFaEe-19-gVmrrYlQ" name="Region">
-      <transition xmi:id="_zHh6AzFaEe-19-gVmrrYlQ" source="_zHh6AjFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHihEDFaEe-19-gVmrrYlQ" source="_zHh6BTFaEe-19-gVmrrYlQ" target="_zHh6CDFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHihETFaEe-19-gVmrrYlQ" source="_zHh6CDFaEe-19-gVmrrYlQ" target="_zHh6CTFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHihEjFaEe-19-gVmrrYlQ" source="_zHh6CDFaEe-19-gVmrrYlQ" target="_zHh6CjFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHihEzFaEe-19-gVmrrYlQ" source="_zHh6CTFaEe-19-gVmrrYlQ" target="_zHh6CjFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHjIIDFaEe-19-gVmrrYlQ" source="_zHh6CjFaEe-19-gVmrrYlQ" target="_zHh6DzFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHjIITFaEe-19-gVmrrYlQ" source="_zHh6BjFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHjIIjFaEe-19-gVmrrYlQ" source="_zHh6BzFaEe-19-gVmrrYlQ" target="_zHh6CzFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHjIIzFaEe-19-gVmrrYlQ" source="_zHh6CzFaEe-19-gVmrrYlQ" target="_zHh6DDFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHjIJDFaEe-19-gVmrrYlQ" source="_zHh6DDFaEe-19-gVmrrYlQ" target="_zHh6DTFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHjIJTFaEe-19-gVmrrYlQ" source="_zHh6DTFaEe-19-gVmrrYlQ" target="_zHh6CzFaEe-19-gVmrrYlQ"/>
-      <transition xmi:id="_zHjIJjFaEe-19-gVmrrYlQ" source="_zHh6DTFaEe-19-gVmrrYlQ" target="_zHh6DzFaEe-19-gVmrrYlQ"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_zHh6AjFaEe-19-gVmrrYlQ" name="start"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_zHh6BTFaEe-19-gVmrrYlQ" name="start"/>
-      <subvertex xmi:type="uml:State" xmi:id="_zHh6CDFaEe-19-gVmrrYlQ" name="A"/>
-      <subvertex xmi:type="uml:State" xmi:id="_zHh6CTFaEe-19-gVmrrYlQ" name="B"/>
-      <subvertex xmi:type="uml:State" xmi:id="_zHh6CjFaEe-19-gVmrrYlQ" name="C"/>
-      <subvertex xmi:type="uml:FinalState" xmi:id="_zHh6DjFaEe-19-gVmrrYlQ" name="Final"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_zHh6BjFaEe-19-gVmrrYlQ" name="start"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_zHh6BzFaEe-19-gVmrrYlQ" name="start"/>
-      <subvertex xmi:type="uml:State" xmi:id="_zHh6CzFaEe-19-gVmrrYlQ" name="C"/>
-      <subvertex xmi:type="uml:State" xmi:id="_zHh6DDFaEe-19-gVmrrYlQ" name="D"/>
-      <subvertex xmi:type="uml:State" xmi:id="_zHh6DTFaEe-19-gVmrrYlQ" name="E"/>
-      <subvertex xmi:type="uml:FinalState" xmi:id="_zHh6DzFaEe-19-gVmrrYlQ" name="Final"/>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_5pnjoDF-Ee-yneUjru_dig" name="Model">
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_5pnjoTF-Ee-yneUjru_dig" name="StateMachine">
+    <region xmi:id="_5poKtTF-Ee-yneUjru_dig" name="Region">
+      <transition xmi:id="_5poKtjF-Ee-yneUjru_dig" source="_5pnjojF-Ee-yneUjru_dig" target="_5poKsDF-Ee-yneUjru_dig"/>
+      <transition xmi:id="_5poKtzF-Ee-yneUjru_dig" source="_5pnjojF-Ee-yneUjru_dig" target="_5poKsTF-Ee-yneUjru_dig"/>
+      <transition xmi:id="_5poxwDF-Ee-yneUjru_dig" source="_5poKsDF-Ee-yneUjru_dig" target="_5poKsTF-Ee-yneUjru_dig"/>
+      <transition xmi:id="_5poxwTF-Ee-yneUjru_dig" source="_5poKsjF-Ee-yneUjru_dig" target="_5poKszF-Ee-yneUjru_dig"/>
+      <transition xmi:id="_5poxwjF-Ee-yneUjru_dig" source="_5poKszF-Ee-yneUjru_dig" target="_5poKtDF-Ee-yneUjru_dig"/>
+      <transition xmi:id="_5poxwzF-Ee-yneUjru_dig" source="_5poKtDF-Ee-yneUjru_dig" target="_5poKsjF-Ee-yneUjru_dig"/>
+      <transition xmi:id="_5ppY0DF-Ee-yneUjru_dig" name="startTransition">
+        <source xmi:type="uml:Pseudostate" href="merged_out.uml#_5phdDTF-Ee-yneUjru_dig"/>
+        <target xmi:type="uml:State" href="test.uml#_A1"/>
+      </transition>
+      <transition xmi:id="_5ppY0jF-Ee-yneUjru_dig" name="finalTransition">
+        <source xmi:type="uml:State" href="test.uml#_C1"/>
+        <target xmi:type="uml:FinalState" href="merged_out.uml#_5phdFTF-Ee-yneUjru_dig"/>
+      </transition>
+      <subvertex xmi:type="uml:State" xmi:id="_5pnjojF-Ee-yneUjru_dig" name="A"/>
+      <subvertex xmi:type="uml:State" xmi:id="_5poKsDF-Ee-yneUjru_dig" name="B"/>
+      <subvertex xmi:type="uml:State" xmi:id="_5poKsTF-Ee-yneUjru_dig" name="C"/>
+      <subvertex xmi:type="uml:State" xmi:id="_5poKsjF-Ee-yneUjru_dig" name="C"/>
+      <subvertex xmi:type="uml:State" xmi:id="_5poKszF-Ee-yneUjru_dig" name="D"/>
+      <subvertex xmi:type="uml:State" xmi:id="_5poKtDF-Ee-yneUjru_dig" name="E"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_5poxxDF-Ee-yneUjru_dig" name="start"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_5ppY0TF-Ee-yneUjru_dig" name="Final"/>
     </region>
   </packagedElement>
 </uml:Model>
