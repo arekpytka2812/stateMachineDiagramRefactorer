@@ -37,6 +37,16 @@ helper def: findTargetState(sm : MM!StateMachine) : MM!State =
     sm.region->first().subvertex->select(e | e.oclIsTypeOf(MM!State) and not sm.region->first().transition->exists(t | t.target = e))->first();
 
 
+
+helper context MM!Region def : filterTrans(tran_in: Sequence(MM!Transition)) : Sequence(MM!Transition) = 
+	tran_in->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
+	if (result->exists(r | r.source = t.source and r.target = t.target)) then
+		result
+	else
+		result->append(thisModule.transition(t))
+	endif
+);
+
 rule Region {
   from
     r : MM!Region
@@ -44,30 +54,22 @@ rule Region {
     r_copy : MM!Region (
       name <- r.name,
       subvertex <- r.subvertex,
-      transition <- thisModule.uniqueTransitions(r.transition)
+      transition <-  if r.transition.oclIsTypeOf(Sequence(MM!Transition)) then thisModule.filterTrans(r.transition) else r.transition endif
     )
 }
 
-helper def: uniqueTransitions(transitions: Sequence(MM!Transition)) : Sequence(MM!Transition) =
-	transitions->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
-		if result->exists(r | r.source = t.source and r.target = t.target) then
-			result
-		else
-			result->append(t)
-		endif
-	);
-
-
-rule Transition {
-  from
-    t : MM!Transition (not t.source.oclIsUndefined() and not t.target.oclIsUndefined())
-  to
-    t_copy : MM!Transition (
-      source <- t.source,
-      target <- t.target,
-      guard <- t.guard
-    )
+rule transition(transition : MM!Transition) {
+	to 
+		trans_out : MM!Transition (
+			
+		)
+	do {
+		trans_out.name<- transition.name;
+		trans_out.source<- transition.source;
+		trans_out.target<- transition.target;
+	}
 }
+
 
 helper context MM!Region def: uniqueStates(states: Sequence(MM!State)): Sequence(MM!State) =
   states->iterate(s; result: Sequence(MM!State) = Sequence{} |
