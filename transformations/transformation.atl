@@ -40,11 +40,16 @@ helper def: findTargetState(sm : MM!StateMachine) : MM!State =
 
 helper context MM!Region def : filterTrans(tran_in: Sequence(MM!Transition)) : Sequence(MM!Transition) = 
 	tran_in->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
-	if (result->exists(r | r.source = t.source and r.target = t.target)) then
-		result
+	if ((t.source.oclIsUndefined() and t.target.oclIsUndefined()) or result->exists(r | (r.source = t.source and r.target = t.target))) then
+		result.debug('Not appedning')
 	else
-		result->append(thisModule.transition(t))
+		result->append(t).debug('Appending')
 	endif
+);
+
+helper context MM!Region def : performTransition(filtered : Sequence(MM!Transition)) : Sequence(MM!Transition) =
+	filtered->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
+		result->append(thisModule.transition(t)).debug('Transforming transition')
 );
 
 rule Region {
@@ -54,20 +59,19 @@ rule Region {
     r_copy : MM!Region (
       name <- r.name,
       subvertex <- r.subvertex,
-      transition <-  if r.transition.oclIsTypeOf(Sequence(MM!Transition)) then thisModule.filterTrans(r.transition) else r.transition endif
-    )
+      transition <-  r.performTransition(r.filterTrans(r.transition))
+	  )
 }
 
-rule transition(transition : MM!Transition) {
+lazy rule transition{
+	from
+		trans_in : MM!Transition 
 	to 
 		trans_out : MM!Transition (
-			
-		)
-	do {
-		trans_out.name<- transition.name;
-		trans_out.source<- transition.source;
-		trans_out.target<- transition.target;
-	}
+		name<- trans_in.name,
+		source<- trans_in.source,
+		target<- trans_in.target
+	)
 }
 
 
