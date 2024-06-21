@@ -36,8 +36,7 @@ rule StateMachine {
 helper def: findTargetState(sm : MM!StateMachine) : MM!State =
     sm.region->first().subvertex->select(e | e.oclIsTypeOf(MM!State) and not sm.region->first().transition->exists(t | t.target = e))->first();
 
-
-
+--Filtrowanie przejść o takich samych source i target do nowej sekwencji
 helper context MM!Region def : filterTrans(tran_in: Sequence(MM!Transition)) : Sequence(MM!Transition) = 
 	tran_in->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
 	if ((t.source.oclIsUndefined() and t.target.oclIsUndefined()) or result->exists(r | (r.source = t.source and r.target = t.target))) then
@@ -47,6 +46,7 @@ helper context MM!Region def : filterTrans(tran_in: Sequence(MM!Transition)) : S
 	endif
 );
 
+--Wykonanie rule transition na sekwencji przejść
 helper context MM!Region def : performTransition(filtered : Sequence(MM!Transition)) : Sequence(MM!Transition) =
 	filtered->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
 		result->append(thisModule.transition(t)).debug('Transforming transition')

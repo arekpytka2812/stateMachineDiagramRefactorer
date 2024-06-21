@@ -37,19 +37,19 @@
         <subvertex xmi:type="uml:FinalState" xmi:id="_finalState" name="Final"/>
         
         <!-- Transitions -->
-        <transition xmi:id="_t2" source="_redState" target="_decision1"/>
-        <transition xmi:id="_t3" source="_decision1" target="_greenState"/>
-        <transition xmi:id="_t4" source="_decision1" target="_yellowState"/>
-        <transition xmi:id="_t5" source="_greenState" target="_fork1"/>
-        <transition xmi:id="_t6" source="_fork1" target="_maintenanceState"/>
-        <transition xmi:id="_t7" source="_fork1" target="_yellowState"/>
-        <transition xmi:id="_t8" source="_maintenanceState" target="_join1"/>
-        <transition xmi:id="_t9" source="_yellowState" target="_join1"/>
-        <transition xmi:id="_t12" source="_yellowState" target="_join1"/>
-        <transition xmi:id="_t10" source="_join1" target="_finalState"/>
+        <transition xmi:id="_t2" name="RD1" source="_redState" target="_decision1"/>
+        <transition xmi:id="_t3" name="D1G" source="_decision1" target="_greenState"/>
+        <transition xmi:id="_t4" name="D1Y" source="_decision1" target="_yellowState"/>
+        <transition xmi:id="_t5" name="GF1" source="_greenState" target="_fork1"/>
+        <transition xmi:id="_t6" name="F1M" source="_fork1" target="_maintenanceState"/>
+        <transition xmi:id="_t7" name="F1Y" source="_fork1" target="_yellowState"/>
+        <transition xmi:id="_t8" name="MJ1" source="_maintenanceState" target="_join1"/>
+        <transition xmi:id="_t9" name="YJ1" source="_yellowState" target="_join1"/>
+        <transition xmi:id="_t12" name="YJ1" source="_yellowState" target="_join1"/>
+        <transition xmi:id="_t10" name="J1F" source="_join1" target="_finalState"/>
 
-        <transition xmi:id="_t11" source="_redState" target="_finalState"/>>
-        <transition xmi:id="_t13" source="" target=""/>
+        <transition xmi:id="_t11" name="" source="_redState" target="_finalState"/>>
+        <transition xmi:id="_t13" name="" source="" target=""/>
       </region>
     </packagedElement>
   </uml:Model>

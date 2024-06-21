@@ -1,33 +1,57 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_e0cHQC4YEe-f658t8HaRPQ" name="TrafficLightSystem">
-  <packagedElement xmi:type="uml:StateMachine" xmi:id="_e0cHQS4YEe-f658t8HaRPQ" name="TrafficLightStateMachine">
-    <region xmi:id="_e0cHRC4YEe-f658t8HaRPQ" name="MainRegion">
-      <transition xmi:id="_e0cHQy4YEe-f658t8HaRPQ" source="_e0cHQi4YEe-f658t8HaRPQ" target="_e0cHSC4YEe-f658t8HaRPQ"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_e0cHQi4YEe-f658t8HaRPQ" name="start"/>
-      <subvertex xmi:type="uml:State" xmi:id="_e0cHSC4YEe-f658t8HaRPQ" name="Red">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuVS4YEe-f658t8HaRPQ" name="turnOnRedLight"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuVi4YEe-f658t8HaRPQ" name="turnOffRedLight"/>
-      </subvertex>
-      <subvertex xmi:type="uml:State" xmi:id="_e0cuUC4YEe-f658t8HaRPQ" name="Green">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuVy4YEe-f658t8HaRPQ" name="turnOnGreenLight"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuWC4YEe-f658t8HaRPQ" name="turnOffGreenLight"/>
-      </subvertex>
-      <subvertex xmi:type="uml:State" xmi:id="_e0cuUS4YEe-f658t8HaRPQ" name="Yellow">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuWS4YEe-f658t8HaRPQ" name="turnOnYellowLight"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuWi4YEe-f658t8HaRPQ" name="turnOffYellowLight"/>
-      </subvertex>
-      <subvertex xmi:type="uml:State" xmi:id="_e0cuUi4YEe-f658t8HaRPQ" name="Yellow">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuWy4YEe-f658t8HaRPQ" name="turnOnYellowLight"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuXC4YEe-f658t8HaRPQ" name="turnOffYellowLight"/>
-      </subvertex>
-      <subvertex xmi:type="uml:State" xmi:id="_e0cuUy4YEe-f658t8HaRPQ" name="Maintenance">
-        <entry xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuXS4YEe-f658t8HaRPQ" name="startMaintenance"/>
-        <exit xmi:type="uml:OpaqueBehavior" xmi:id="_e0cuXi4YEe-f658t8HaRPQ" name="endMaintenance"/>
-      </subvertex>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_e0cHRS4YEe-f658t8HaRPQ" name="decision1" kind="choice"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_e0cHRi4YEe-f658t8HaRPQ" name="fork1" kind="fork"/>
-      <subvertex xmi:type="uml:Pseudostate" xmi:id="_e0cHRy4YEe-f658t8HaRPQ" name="join1" kind="join"/>
-      <subvertex xmi:type="uml:FinalState" xmi:id="_e0cuVC4YEe-f658t8HaRPQ" name="Final"/>
-    </region>
-  </packagedElement>
-</uml:Model>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_5R4OoC_1Ee-QTI1kHutB6g" name="TestModel1">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_5R4Ooi_1Ee-QTI1kHutB6g" name="Test1StateMachine">
+      <region xmi:id="_5R4OqC_1Ee-QTI1kHutB6g" name="MainRegion">
+        <transition xmi:id="_5R4OpC_1Ee-QTI1kHutB6g" source="_5R4Ooy_1Ee-QTI1kHutB6g">
+          <target xmi:type="uml:State" href="test.uml#_A1"/>
+        </transition>
+        <transition xmi:id="_5R5cwC_1Ee-QTI1kHutB6g">
+          <source xmi:type="uml:State" href="test.uml#_A1"/>
+          <target xmi:type="uml:State" href="test.uml#_B1"/>
+        </transition>
+        <transition xmi:id="_5R5cwS_1Ee-QTI1kHutB6g">
+          <source xmi:type="uml:State" href="test.uml#_A1"/>
+          <target xmi:type="uml:State" href="test.uml#_C1"/>
+        </transition>
+        <transition xmi:id="_5R5cwi_1Ee-QTI1kHutB6g">
+          <source xmi:type="uml:State" href="test.uml#_B1"/>
+          <target xmi:type="uml:State" href="test.uml#_C1"/>
+        </transition>
+        <transition xmi:id="_5R5cwy_1Ee-QTI1kHutB6g" target="_5R4OrC_1Ee-QTI1kHutB6g">
+          <source xmi:type="uml:State" href="test.uml#_C1"/>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_5R4Ooy_1Ee-QTI1kHutB6g" name="start"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_5R4Oqy_1Ee-QTI1kHutB6g" name="Final"/>
+      </region>
+    </packagedElement>
+  </uml:Model>
+  <uml:Model xmi:id="_5R4OoS_1Ee-QTI1kHutB6g" name="TestModel2">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_5R4OpS_1Ee-QTI1kHutB6g" name="Test2StateMachine">
+      <region xmi:id="_5R4OqS_1Ee-QTI1kHutB6g" name="MainRegion">
+        <transition xmi:id="_5R4Opy_1Ee-QTI1kHutB6g" source="_5R4Opi_1Ee-QTI1kHutB6g"/>
+        <transition xmi:id="_5R6D0C_1Ee-QTI1kHutB6g" source="_5R4Oqi_1Ee-QTI1kHutB6g">
+          <target xmi:type="uml:State" href="test.uml#_C2"/>
+        </transition>
+        <transition xmi:id="_5R6D0S_1Ee-QTI1kHutB6g">
+          <source xmi:type="uml:State" href="test.uml#_C2"/>
+          <target xmi:type="uml:State" href="test.uml#_D2"/>
+        </transition>
+        <transition xmi:id="_5R6D0i_1Ee-QTI1kHutB6g">
+          <source xmi:type="uml:State" href="test.uml#_D2"/>
+          <target xmi:type="uml:State" href="test.uml#_E2"/>
+        </transition>
+        <transition xmi:id="_5R6D0y_1Ee-QTI1kHutB6g">
+          <source xmi:type="uml:State" href="test.uml#_E2"/>
+          <target xmi:type="uml:State" href="test.uml#_C2"/>
+        </transition>
+        <transition xmi:id="_5R6D1C_1Ee-QTI1kHutB6g" target="_5R4OrC_1Ee-QTI1kHutB6g">
+          <source xmi:type="uml:State" href="test.uml#_E2"/>
+        </transition>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_5R4Opi_1Ee-QTI1kHutB6g" name="start"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_5R4Oqi_1Ee-QTI1kHutB6g" name="start"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_5R4OrC_1Ee-QTI1kHutB6g" name="Final"/>
+      </region>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>
