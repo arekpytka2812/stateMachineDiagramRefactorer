@@ -1,0 +1,128 @@
+-- @nsURI MM=http://www.eclipse.org/uml2/5.0.0/UML
+
+module cleanup;
+create OUT : MM from IN : MM;
+
+rule Model {
+	from 
+		m : MM!Model
+	to 
+		m_copy : MM!Model (
+			name <- m.name,
+			packagedElement <- m.packagedElement
+		)
+}
+
+rule StateMachine {
+  from
+    sm : MM!StateMachine
+  to
+    sm_copy : MM!StateMachine (
+      name <- sm.name,
+      region <- sm.region
+    ),
+    initialState : MM!Pseudostate (
+        kind <- #initial ,
+        container <- sm_copy.region.first(),
+		name <- 'start'
+    ),
+    initialTransition : MM!Transition (
+        source <- initialState,
+        target <- thisModule.findTargetState(sm),
+        container <- sm_copy.region.first()
+    )
+}
+
+helper def: findTargetState(sm : MM!StateMachine) : MM!State =
+    sm.region->first().subvertex->select(e | e.oclIsTypeOf(MM!State) and not sm.region->first().transition->exists(t | t.target = e))->first();
+
+--Filtrowanie przejść o takich samych source i target do nowej sekwencji
+helper context MM!Region def : filterTrans(tran_in: Sequence(MM!Transition)) : Sequence(MM!Transition) = 
+	tran_in->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
+	if ((t.source.oclIsUndefined() and t.target.oclIsUndefined()) or result->exists(r | (r.source = t.source and r.target = t.target))) then
+		result.debug('Not appedning')
+	else
+		result->append(t).debug('Appending')
+	endif
+);
+
+--Wykonanie rule transition na sekwencji przejść
+helper context MM!Region def : performTransition(filtered : Sequence(MM!Transition)) : Sequence(MM!Transition) =
+	filtered->iterate(t; result: Sequence(MM!Transition) = Sequence{} |
+		result->append(thisModule.transition(t)).debug('Transforming transition')
+);
+
+rule Region {
+  from
+    r : MM!Region
+  to
+    r_copy : MM!Region (
+      name <- r.name,
+      subvertex <- r.subvertex,
+      transition <-  r.performTransition(r.filterTrans(r.transition))
+	  )
+}
+
+lazy rule transition{
+	from
+		trans_in : MM!Transition 
+	to 
+		trans_out : MM!Transition (
+		name<- trans_in.name,
+		source<- trans_in.source,
+		target<- trans_in.target
+	)
+}
+
+
+helper context MM!Region def: uniqueStates(states: Sequence(MM!State)): Sequence(MM!State) =
+  states->iterate(s; result: Sequence(MM!State) = Sequence{} |
+    if result->exists(r | r.name = s.name) then
+      result
+    else
+      result->append(s)
+    endif
+  );
+
+
+rule Pseudostate {
+  from
+    ps : MM!Pseudostate
+  to
+    ps_copy : MM!Pseudostate (
+      name <- ps.name,
+      kind <- ps.kind
+    )
+}
+
+-- Kopiowanie tylko poprawnych przejsc (posiada entry i exit)
+rule State {
+  from
+    s : MM!State (s.oclIsTypeOf(MM!State) and (not s.entry.oclIsUndefined()) and (not s.exit.oclIsUndefined()))
+  to
+    s_copy : MM!State (
+      name <- s.name,
+      entry <- s.entry,
+      exit <- s.exit
+    )
+}
+
+rule Final {
+	from 
+      s : MM!FinalState
+	to 
+	  s_copy : MM!FinalState(
+	  	name <- s.name	
+	  )
+}
+
+rule OpaqueBehavior{
+  from 
+	b : MM!OpaqueBehavior
+  to
+  	b_copy : MM!OpaqueBehavior(
+  	  name <- b.name
+  	)
+}
+
+
