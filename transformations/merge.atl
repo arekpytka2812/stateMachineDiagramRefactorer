@@ -1,0 +1,5 @@
+-- @nsURI MM=http://www.eclipse.org/uml2/5.0.0/UML
+
+module merge;
+create OUT : MM refining IN : MM;
+
