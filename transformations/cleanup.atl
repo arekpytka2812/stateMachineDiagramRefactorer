@@ -95,10 +95,12 @@ rule Pseudostate {
     )
 }
 
--- Kopiowanie tylko poprawnych przejsc (posiada entry i exit)
+-- Kopiowanie tylko poprawnych stanów (posiada entry i exit)
 rule State {
   from
-    s : MM!State (s.oclIsTypeOf(MM!State) and (not s.entry.oclIsUndefined()) and (not s.exit.oclIsUndefined()))
+    s : MM!State (s.oclIsTypeOf(MM!State) and (((not s.entry.oclIsUndefined()) and (not s.exit.oclIsUndefined())) or
+    	((not MM!Transition.allInstances()->select(tran | tran.source = s).isEmpty()) or (not MM!Transition.allInstances()->select(tran | tran.target = s).isEmpty())))	
+    )
   to
     s_copy : MM!State (
       name <- s.name,
