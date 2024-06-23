@@ -2,7 +2,7 @@
 <xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <uml:Model xmi:id="_test1" name="TestModel1">
     <packagedElement xmi:type="uml:StateMachine" xmi:id="_test1StateMachine" name="Test1StateMachine">
-      <region xmi:type="uml:Region" xmi:id="_mainRegion" name="MainRegion1">
+      <region xmi:type="uml:Region" xmi:id="_mainRegion1" name="MainRegion1">
         <!-- Initial Pseudostate -->
         
         <!-- States -->
@@ -10,26 +10,26 @@
 	    <subvertex xmi:type="uml:State" xmi:id="_B1" name="B"/>
 	    <subvertex xmi:type="uml:State" xmi:id="_C1" name="C"/>
 	    <subvertex xmi:type="uml:State" xmi:id="_emptyState" name="Empty"/>
-        <subvertex xmi:type="uml:FinalState" xmi:id="_finalState" name="Final"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_finalState1" name="Final"/>
 	    <!-- Transitions -->
 	    <transition xmi:id="_t1" source="_A1" target="_B1"/>
 	    <transition xmi:id="_t1" source="_A1" target="_B1"/>
 	    <transition xmi:id="_t2" source="_A1" target="_C1"/>
 	    <transition xmi:id="_t3" source="_B1" target="_C1"/>
-        <transition xmi:id="_t4" source="_C1" target="_finalState"/>
+        <transition xmi:id="_t4" source="_C1" target="_finalState1"/>
       </region>
     </packagedElement>
   </uml:Model>
   <uml:Model xmi:id="_test2" name="TestModel2">
     <packagedElement xmi:type="uml:StateMachine" xmi:id="_test2StateMachine" name="Test2StateMachine">
-      <region xmi:type="uml:Region" xmi:id="_mainRegion" name="MainRegion2">
+      <region xmi:type="uml:Region" xmi:id="_mainRegion2" name="MainRegion2">
         <!-- Initial Pseudostate -->
     	<subvertex xmi:type="uml:Pseudostate" xmi:id="_start" name="start" kind="initial"/>
         <!-- States -->
         <subvertex xmi:type="uml:State" xmi:id="_C2" name="C"/>
 	    <subvertex xmi:type="uml:State" xmi:id="_D2" name="D"/>
 	    <subvertex xmi:type="uml:State" xmi:id="_E2" name="E"/>
-        <subvertex xmi:type="uml:FinalState" xmi:id="_finalState" name="Final"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_finalState2" name="Final"/>
 	    <!-- Transitions -->
 	    <transition xmi:id="_t5" source="_start" target="_C2"/>
 	    <transition xmi:id="_t6" source="_C2" target="_D2"/>
@@ -41,7 +41,7 @@
 	    <transition xmi:id="_t8" source="_E2" target="_C2"/>
 	    <transition xmi:id="_t8" source="_E2" target="_C2"/>
         <transition xmi:id="_t9" source="" target=""/>
-        <transition xmi:id="_t10" source="_E2" target="_finalState"/>
+        <transition xmi:id="_t10" source="_E2" target="_finalState2"/>
       </region>
     </packagedElement>
   </uml:Model>

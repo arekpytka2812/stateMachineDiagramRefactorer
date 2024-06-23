@@ -140,16 +140,15 @@ rule Region {
 		}
 		
 		if(r.transition -> 
-				select(t | r.subvertex -> select(sub | sub.oclIsTypeOf(MM!FinalState)).debug('subvertecises').includes(t.target.debug('t.target'))).isEmpty().debug('condition_1') or (
-			r.transition -> 
-				select(t | t.target = r.subvertex ->
-					select(sub | sub.oclIsTypeOf(MM!FinalState)).first() and t.source.oclIsUndefined()).size() > 0 ).debug('condition_2')) {
-			thisModule.finalStateTransition(r, r_copy);
+				select(t | r.subvertex -> select(sub | sub.oclIsTypeOf(MM!FinalState)).debug('subvertecises').includes(t.target.debug('t.target'))).isEmpty().debug('condition_1')) {
+			thisModule.finalStateTransition(r, r_copy);	
 		} else if (r.transition ->
 				select(t | t.target = r.subvertex ->
 					select(sub | sub.oclIsTypeOf(MM!FinalState)).first()).debug('trans to final').size().debug('sze') > 0) {
-			thisModule.transition(r.transition -> select(t | t.target = r.subvertex ->
-					select(sub | sub.oclIsTypeOf(MM!FinalState)).first()).debug('copying transition to final').first());
+			for(trans in r.transition -> select(t | t.target = r.subvertex ->
+					select(sub | sub.oclIsTypeOf(MM!FinalState))).debug('copying transitions to final')) {
+			thisModule.transition(trans);
+					}
 			
 		}
 	}
